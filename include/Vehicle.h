@@ -38,6 +38,7 @@ public:
     /// Simulation time when the current state began.
     double flightStartTime()     const { return flightStartTime_; }
     double chargeWaitStartTime() const { return chargeWaitStartTime_; }
+    double chargeStartTime()     const { return chargeStartTime_; }  // added for unit testing
 
     // ------------------------------------------------------------------ //
     //  State transitions (called by Simulator)

@@ -1,4 +1,8 @@
 #pragma once
+
+// Set to 1 to enable unit test helpers, 0 for release build
+#define UNIT_TEST 1
+
 #include "Vehicle.h"
 #include "ChargerPool.h"
 #include "Statistics.h"
@@ -58,6 +62,14 @@ public:
      * @return Per-type statistics indexed by company name.
      */
     std::unordered_map<std::string, TypeStats> run();
+
+#if UNIT_TEST
+    // Expose internal queue size for unit testing only.
+    // Compiled out entirely when UNIT_TEST == 0.
+    int pendingEventCount() const {
+        return static_cast<int>(eventQueue_.size());
+    }
+#endif
 
 private:
     // ------------------------------------------------------------------ //
